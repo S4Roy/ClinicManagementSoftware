@@ -1,0 +1,38 @@
+<h1 mat-dialog-title>{{serviceData?'Update':'New'}} Service</h1>
+<div mat-dialog-content>
+    <form [formGroup]="newService" class="w-100">
+        <div class="mb-2">
+            <label class="form-label">Service Name</label>
+            <input type="text" formControlName="service_name" class="form-control" placeholder="Service Name"
+                [class.is-invalid]="(!Global.isInputValid(newService, 'service_name'))">
+            <div class="invalid-feedback" *ngIf="!Global.isInputRuleValid(newService, 'service_name', 'required')">
+                <div>The Service Name is required</div>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Duration</label>
+            <input type="text" formControlName="duration" class="form-control" placeholder="30"
+                [class.is-invalid]="(!Global.isInputValid(newService, 'duration'))">
+            <div class="invalid-feedback" *ngIf="!Global.isInputRuleValid(newService, 'duration', 'required')">
+                <div>The Duration is required</div>
+            </div>
+        </div>
+
+        <div class="mb-2">
+            <label class="form-label">Fee</label>
+            <input type="text" formControlName="fee" class="form-control" placeholder="Fee"
+                [class.is-invalid]="(!Global.isInputValid(newService, 'fee'))">
+            <div class="invalid-feedback" *ngIf="!Global.isInputRuleValid(newService, 'fee', 'required')">
+                <div>The fee is required</div>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close>Close</button>
+    <button type="submit" mat-flat-button color="primary" (click)="submitService($event)">
+        <span class="indicator-label">{{serviceData?'Update':'Save'}}</span>
+        <span class="indicator-progress">Please wait...
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+    </button>
+</div>

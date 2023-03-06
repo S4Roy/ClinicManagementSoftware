@@ -1,0 +1,18 @@
+<ul>
+    <li *ngFor="let nav of navs">
+        <a [routerLink]="nav?.slug" routerLinkActive="active-link">
+            <mat-icon>{{nav?.icon}}</mat-icon>
+            <span>{{nav?.label}}</span>
+        </a>
+    </li>
+</ul>
+<div class="footer">
+    <a [routerLink]="'/'" class="download">
+        <mat-icon>smartphone</mat-icon>
+        <span>Download</span>
+    </a>
+    <a [routerLink]="'privacy'">
+        <mat-icon>lock</mat-icon>
+        <span>Privacy Off</span>
+    </a>
+</div>

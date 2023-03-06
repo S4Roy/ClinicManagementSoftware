@@ -1,0 +1,67 @@
+<div class="animated fadeIn">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <strong>All Meetings</strong>
+                </div>
+                <div class="card-body">
+                    <custom-tableloader></custom-tableloader>
+                    <custom-tableoption (onFilterChanged)="filterTable($event)"></custom-tableoption>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0">
+                            <thead>
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Name</th>
+                                    <th>Date</th>
+                                    <th>Slot</th>
+                                    <th>Service</th>
+                                    <th>Fee</th>
+                                    <th class="text-center">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngIf="rows.length > 0; else noRecordsFound">
+                                    <tr *ngFor="let item of rows; let i = index">
+                                        <td>{{ Global.getPageNumber({ 'index': i, 'pageno' : paginationOptions.page,
+                                            'tablelength' : paginationOptions.limit }) }}</td>
+                                        <td>{{item.client_data?.first_name + ' '+item.client_data?.last_name}}</td>
+                                        <td>{{item.startDate| date :'dd/MM/YYYY'}}
+                                        </td>
+                                        <td>{{item.startDate| date :'shortTime'}} - {{item.endDate| date
+                                            :'shortTime'}}
+                                        </td>
+                                        <td>
+                                            {{item?.service_data?.service_name}}
+                                        </td>
+                                        <td>
+                                            {{item?.service_data?.fee | currency}}
+                                        </td>
+
+                                        <td class="text-center">
+                                            <button mat-icon-button>
+                                                <mat-icon>visibility</mat-icon>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                                <ng-template #noRecordsFound>
+                                    <tr>
+                                        <td class="text-center" colspan="100%">No records found</td>
+                                    </tr>
+                                </ng-template>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <custom-pagination [rows]="rows" [paginationOptions]="paginationOptions"
+                        (onPageClicked)="changePage($event)"></custom-pagination>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

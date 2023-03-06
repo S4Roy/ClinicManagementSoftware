@@ -1,0 +1,78 @@
+<h1 mat-dialog-title>New Appointement</h1>
+<div mat-dialog-content>
+    <form [formGroup]="newAppointment" style="padding-right: 10px;">
+        <div class="d-flex">
+            <div class="w-70">
+                <ng-select formControlName="client_id" class="w-100" placeholder="Select Client">
+                    <ng-option *ngFor="let client of client_list" [value]="client._id">{{client?.first_name + '
+                        '+client?.last_name}}</ng-option>
+                </ng-select>
+                <div class="invalid-feedback" *ngIf="!Global.isInputRuleValid(newAppointment, 'client_id', 'required')">
+                    <div>This is required field</div>
+                </div>
+            </div>
+            <div class="w-30">
+                <button mat-stroked-button>
+                    <mat-icon>add</mat-icon>
+                    New Client
+                </button>
+            </div>
+        </div>
+        <div class="my-2 d-flex align-items-center">
+            <dp-date-picker class="form-control" [mode]="'day'" placeholder="MM-DD-YYYY"
+                [config]="{'disableKeypress': true, 'format': 'MM-DD-YYYY',min:Global.MIN_DATE}"
+                formControlName="schedule_date" theme="dp-material">
+            </dp-date-picker>
+            <dp-date-picker class="form-control mx-1" [mode]="'time'"
+                [config]="{'disableKeypress': true,format:'hh:mm A'}" formControlName="schedule_time"
+                theme="dp-material">
+            </dp-date-picker>
+            <input type="text" formControlName="duration" class="form-control " placeholder="Duration">
+            <span class="mx-1">min</span>
+        </div>
+        <div class="d-flex">
+            <div class="form-group w-75">
+                <label>Services</label>
+
+            </div>
+            <div class="form-group mx-1 w-25">
+                <label>Fee $</label>
+            </div>
+        </div>
+        <!-- <ng-container formArrayName="services_list"> -->
+        <div class="d-flex mt-2 align-items-center">
+            <!-- <div class="d-flex mt-2 align-items-center"
+                *ngFor="let service of Global.getFormGroupArray(newAppointment,'services_list');let i=index"
+                [formGroupName]="i"> -->
+            <div class="form-group w-75">
+                <ng-select formControlName="service_id" placeholder="Select Service">
+                    <ng-option *ngFor="let service of service_list" [value]="service._id">{{service?.service_name}}
+                    </ng-option>
+                </ng-select>
+                <div class="invalid-feedback"
+                    *ngIf="!Global.isInputRuleValid(newAppointment, 'service_id', 'required')">
+                    <div>This is required field</div>
+                </div>
+            </div>
+            <div class="form-group mx-1 w-25">
+                <input formControlName="fee" type="text" class="form-control" readonly="true">
+            </div>
+            <!-- <button mat-icon-button class="remove-service" *ngIf="i>0"
+                    (click)="Global.removeFormGroupArrRow(newAppointment,'services_list',i)">
+                    <mat-icon color="warn">delete</mat-icon>
+                </button> -->
+        </div>
+        <!-- </ng-container> -->
+        <!-- <button mat-stroked-button (click)="addService()" class="mt-2">
+            Add Service
+        </button> -->
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close>Close</button>
+    <button mat-flat-button color="primary" (click)="submitAppointment($event)">
+        <span class="indicator-label">Done</span>
+        <span class="indicator-progress">Please wait...
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+    </button>
+</div>

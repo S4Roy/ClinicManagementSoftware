@@ -1,0 +1,25 @@
+<div class="row mb-3">
+    <div class="col-md-2">
+        <form [formGroup]="filterForm" style="width: 80px;">
+            <select class="form-select" formControlName="limit" (change)="this.onFilterChanged.emit(filterForm.value)">
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="50">50</option>
+            </select>
+        </form>
+    </div>
+
+    <div class="col-md-7"></div>
+
+    <div class="col-md-3">
+        <form [formGroup]="filterForm">
+            <div class="input-group d-knone">
+                <input type="text" [placeholder]="placeholder" class="form-control focus-none" formControlName="searchkey">
+                <button class="btn btn-primary focus-none input-group-prepend" type="submit"
+                    (click)="this.onFilterChanged.emit(filterForm.value)">
+                    <mat-icon>search</mat-icon>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

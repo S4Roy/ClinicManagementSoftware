@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-between align-items-center my-1">
+    <div class="col-md-5">
+        <div class="d-flex align-items-center">
+            <button mat-stroked-button>Today</button>
+            <p class="h5 mx-1 m-0 p-0">{{calenderTitle}}</p>
+        </div>
+    </div>
+    <div class="col-md-2 text-center">
+        <mat-button-toggle-group [(ngModel)]="toogle_value" (change)="toogleCalender($event)" name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle value="day">Day</mat-button-toggle>
+            <mat-button-toggle value="week">Week</mat-button-toggle>
+            <mat-button-toggle value="month">Month</mat-button-toggle>
+        </mat-button-toggle-group>
+    </div>
+    <div class="col-md-5">
+        <div class="d-flex align-items-center justify-content-end">
+            <button class="mx-1" mat-icon-button>
+                <mat-icon>tune</mat-icon>
+            </button>
+            <ng-select class="mx-1 w-25" [items]="center_list" bindLabel="name" bindValue="_id" [(ngModel)]="center_id">
+            </ng-select>
+            <span class="mx-1"></span>
+            <button mat-stroked-button>Availability</button>
+        </div>
+
+    </div>
+</div>
+<full-calendar #calendar [options]="calendarOptions"></full-calendar>

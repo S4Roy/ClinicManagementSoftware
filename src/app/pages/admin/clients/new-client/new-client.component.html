@@ -1,0 +1,45 @@
+<h1 mat-dialog-title>{{clientData?'Update':'New'}} Client</h1>
+<div mat-dialog-content>
+    <form [formGroup]="newClient" class="w-100">
+        <div class="mb-2">
+            <label class="form-label">First Name</label>
+            <input type="text" formControlName="first_name" class="form-control" placeholder="First Name"
+                [class.is-invalid]="(!Global.isInputValid(newClient, 'first_name'))">
+            <div class="invalid-feedback" *ngIf="!Global.isInputRuleValid(newClient, 'first_name', 'required')">
+                <div>The First Name is required</div>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Last Name</label>
+            <input type="text" formControlName="last_name" class="form-control" placeholder="Last Name"
+                [class.is-invalid]="(!Global.isInputValid(newClient, 'last_name'))">
+            <div class="invalid-feedback" *ngIf="!Global.isInputRuleValid(newClient, 'last_name', 'required')">
+                <div>The Last Name is required</div>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Email address</label>
+            <input type="email" formControlName="email" class="form-control" placeholder="name@example.com"
+                [class.is-invalid]="(!Global.isInputValid(newClient, 'email'))">
+            <div class="invalid-feedback" *ngIf="!Global.isInputRuleValid(newClient, 'email', 'required')">
+                <div>The Email address is required</div>
+            </div>
+        </div>
+        <div class="mb-2">
+            <label class="form-label">Phone</label>
+            <input type="text" formControlName="phone" class="form-control" placeholder="Phone"
+                [class.is-invalid]="(!Global.isInputValid(newClient, 'phone'))">
+            <div class="invalid-feedback" *ngIf="!Global.isInputRuleValid(newClient, 'phone', 'required')">
+                <div>The Phone is required</div>
+            </div>
+        </div>
+    </form>
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-stroked-button mat-dialog-close>Close</button>
+    <button type="submit" mat-flat-button color="primary" (click)="submitClient($event)">
+        <span class="indicator-label">{{clientData?'Update':'Save'}}</span>
+        <span class="indicator-progress">Please wait...
+            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+    </button>
+</div>

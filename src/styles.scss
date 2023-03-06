@@ -1,1 +1,98 @@
-/* You can add global styles to this file, and also import other style files */
+@import "ngx-toastr/toastr";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+button {
+  .mat-button-wrapper {
+    pointer-events: none;
+  }
+
+  .indicator-progress {
+    display: none;
+    pointer-events: none;
+  }
+
+  .indicator-label {
+    pointer-events: none;
+  }
+}
+
+button.btn-loading {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+button span {
+  pointer-events: none;
+}
+
+.btn-loading span.indicator-label {
+  display: none;
+}
+
+.btn-loading span.indicator-progress {
+  display: block;
+}
+
+button[type="submit"] span {
+  pointer-events: none;
+}
+
+.svg-icon img {
+  width: 28px;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.user-layout {
+  display: flex;
+  height: 90vh;
+  width: 100%;
+  app-user-sidebar,app-admin-sidebar {
+    width: 15%;
+    height: inherit;
+    border-right: 1px solid #f2f2f2;
+  }
+  .outlet {
+    width: 85%;
+    height: inherit;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 5px;
+  }
+}
+input.dp-picker-input {
+  padding: 0;
+  border: none;
+}
+dp-date-picker.form-control {
+  padding: 3px 5px;
+}
+button.remove-service {
+  position: absolute;
+  right: 0;
+}
+.table-processing {
+  padding: 10px !important;
+  background: #060de1 !important;
+  color: #fff !important;
+  border: 2px solid #f7f8f9 !important;
+  height: auto !important;
+  border-radius: 30px;
+  width: 15% !important;
+  margin: 0;
+  text-align: center !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  margin-left: -100px !important;
+  margin-top: -26px !important;
+  z-index: 1 !important;
+}
